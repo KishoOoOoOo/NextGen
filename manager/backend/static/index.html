@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NextGen Hub - نظام إدارة العمليات المتقدم</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
+    <style>
+        body { font-family: 'Cairo', system-ui, sans-serif; }
+        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%); }
+        .glass-effect { backdrop-filter: blur(10px); background: rgba(15, 23, 42, 0.8); }
+        .metric-card { transition: all 0.3s ease; }
+        .metric-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .status-indicator { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    </style>
+</head>
+<body class="gradient-bg text-white min-h-screen">
+    <!-- Header -->
+    <header class="glass-effect border-b border-slate-700/50 sticky top-0 z-50">
+        <div class="flex items-center justify-between px-6 py-4">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-server text-white text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-2xl font-bold text-white">NextGen Hub</h1>
+                    <p class="text-sm text-slate-300">نظام إدارة العمليات المتقدم</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-6 text-sm">
+                    <div class="flex items-center gap-2">
+                        <div class="w-3 h-3 bg-emerald-500 rounded-full status-indicator"></div>
+                        <span>النظام متصل</span>
+                    </div>
+                    <div>آخر تحديث: <span id="last-update" class="text-emerald-400">الآن</span></div>
+                </div>
+                <div class="flex items-center gap-2">
+                    <select id="language-selector" class="bg-slate-700/50 text-white rounded-lg px-3 py-2 text-sm border border-slate-600">
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                    </select>
+                    <button class="p-2 rounded-lg hover:bg-slate-700/50">
+                        <i class="fas fa-cog"></i>
+                    </button>
+			</div>
+			</div>
+		</div>
+	</header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+        <!-- Welcome Section -->
+        <section class="text-center mb-12">
+            <h2 class="text-4xl font-bold mb-4 text-gradient">مرحباً بك في NextGen Hub</h2>
+            <p class="text-xl text-slate-300 mb-8">نظام إدارة العمليات المتقدم للويندوز</p>
+            
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="/dashboard" class="btn btn-primary text-lg px-8 py-4">
+                    <i class="fas fa-tachometer-alt mr-2"></i>
+                    لوحة المراقبة المتقدمة
+                </a>
+                <a href="/api/projects" class="btn btn-outline text-lg px-8 py-4">
+                    <i class="fas fa-code mr-2"></i>
+                    API الوثائق
+                </a>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <div class="metric-card glass-effect rounded-xl p-6 border border-slate-700/50">
+                <div class="w-16 h-16 bg-emerald-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-project-diagram text-emerald-400 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">إدارة المشاريع</h3>
+                <p class="text-slate-300">إضافة وتعديل وحذف المشاريع بسهولة مع دعم التشغيل المتعدد</p>
+            </div>
+
+            <div class="metric-card glass-effect rounded-xl p-6 border border-slate-700/50">
+                <div class="w-16 h-16 bg-blue-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-chart-line text-blue-400 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">المراقبة المتقدمة</h3>
+                <p class="text-slate-300">مراقبة استخدام المعالج والذاكرة في الوقت الفعلي</p>
+            </div>
+
+            <div class="metric-card glass-effect rounded-xl p-6 border border-slate-700/50">
+                <div class="w-16 h-16 bg-purple-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-shield-alt text-purple-400 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">الصحة والاستقرار</h3>
+                <p class="text-slate-300">فحص صحة المشاريع وإعادة التشغيل التلقائي</p>
+            </div>
+
+            <div class="metric-card glass-effect rounded-xl p-6 border border-slate-700/50">
+                <div class="w-16 h-16 bg-yellow-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-desktop text-yellow-400 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-semibold mb-2">واجهات متعددة</h3>
+                <p class="text-slate-300">واجهة ويب متقدمة وتطبيق سطح مكتب</p>
+					</div>
+
+            <div class="metric-card glass-effect rounded-xl p-6 border border-slate-700/50">
+                <div class="w-16 h-16 bg-red-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-language text-red-400 text-2xl"></i>
+				</div>
+                <h3 class="text-xl font-semibold mb-2">دعم اللغات</h3>
+                <p class="text-slate-300">دعم كامل للعربية والإنجليزية</p>
+			</div>
+
+            <div class="metric-card glass-effect rounded-xl p-6 border border-slate-700/50">
+                <div class="w-16 h-16 bg-indigo-500/20 rounded-lg flex items-center justify-center mb-4">
+                    <i class="fas fa-code text-indigo-400 text-2xl"></i>
+				</div>
+                <h3 class="text-xl font-semibold mb-2">API متقدم</h3>
+                <p class="text-slate-300">واجهة برمجة RESTful للتحكم والمراقبة</p>
+			</div>
+		</section>
+
+        <!-- Quick Stats -->
+        <section class="mb-12">
+            <h3 class="text-2xl font-bold mb-6 text-center">إحصائيات سريعة</h3>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="metric-card glass-effect rounded-xl p-6 border border-slate-700/50 text-center">
+                    <div class="text-3xl font-bold text-emerald-400 mb-2" id="total-projects">0</div>
+                    <div class="text-slate-400">إجمالي المشاريع</div>
+                </div>
+                <div class="metric-card glass-effect rounded-xl p-6 border border-slate-700/50 text-center">
+                    <div class="text-3xl font-bold text-blue-400 mb-2" id="running-projects">0</div>
+                    <div class="text-slate-400">المشاريع النشطة</div>
+				</div>
+                <div class="metric-card glass-effect rounded-xl p-6 border border-slate-700/50 text-center">
+                    <div class="text-3xl font-bold text-yellow-400 mb-2" id="cpu-usage">0%</div>
+                    <div class="text-slate-400">استخدام المعالج</div>
+				</div>
+                <div class="metric-card glass-effect rounded-xl p-6 border border-slate-700/50 text-center">
+                    <div class="text-3xl font-bold text-purple-400 mb-2" id="memory-usage">0 GB</div>
+                    <div class="text-slate-400">استخدام الذاكرة</div>
+		</div>
+	</div>
+        </section>
+
+        <!-- Quick Actions -->
+        <section class="mb-12">
+            <h3 class="text-2xl font-bold mb-6 text-center">إجراءات سريعة</h3>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button onclick="addProject()" class="btn btn-primary">
+                    <i class="fas fa-plus mr-2"></i>
+                    إضافة مشروع جديد
+                </button>
+                <button onclick="viewLogs()" class="btn btn-secondary">
+                    <i class="fas fa-file-alt mr-2"></i>
+                    عرض السجلات
+                </button>
+                <button onclick="systemInfo()" class="btn btn-outline">
+                    <i class="fas fa-info-circle mr-2"></i>
+                    معلومات النظام
+                </button>
+            </div>
+        </section>
+
+        <!-- Recent Activity -->
+        <section class="mb-12">
+            <h3 class="text-2xl font-bold mb-6 text-center">النشاط الأخير</h3>
+            <div class="glass-effect rounded-xl p-6 border border-slate-700/50">
+                <div id="activity-feed" class="space-y-4">
+                    <div class="flex items-center gap-4 p-4 bg-slate-800/30 rounded-lg">
+                        <div class="w-10 h-10 bg-emerald-500/20 rounded-full flex items-center justify-center">
+                            <i class="fas fa-play text-emerald-400"></i>
+						</div>
+                        <div class="flex-1">
+                            <div class="text-white">تم تشغيل النظام بنجاح</div>
+                            <div class="text-sm text-slate-400">منذ لحظات</div>
+						</div>
+					</div>
+					</div>
+				</div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="glass-effect border-t border-slate-700/50 py-6">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-slate-400">
+                © 2024 NextGen Hub - نظام إدارة العمليات المتقدم
+            </p>
+            <p class="text-sm text-slate-500 mt-2">
+                مصمم خصيصاً للويندوز مع دعم كامل للعربية والإنجليزية
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Update last update time
+        function updateLastUpdateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('ar-SA');
+            document.getElementById('last-update').textContent = timeString;
+        }
+
+        // Load system stats
+        async function loadSystemStats() {
+            try {
+                const response = await fetch('/api/system/stats');
+                const stats = await response.json();
+                
+                document.getElementById('total-projects').textContent = stats.total_projects;
+                document.getElementById('running-projects').textContent = stats.running_projects;
+                document.getElementById('cpu-usage').textContent = `${stats.total_cpu_percent.toFixed(1)}%`;
+                document.getElementById('memory-usage').textContent = `${(stats.total_memory_mb / 1024).toFixed(1)} GB`;
+            } catch (error) {
+                console.error('Error loading system stats:', error);
+            }
+        }
+
+        // Quick action functions
+        function addProject() {
+            window.location.href = '/dashboard#projects';
+        }
+
+        function viewLogs() {
+            window.location.href = '/dashboard#logs';
+        }
+
+        function systemInfo() {
+            window.location.href = '/dashboard#monitoring';
+        }
+
+        // Language selector
+        document.getElementById('language-selector').addEventListener('change', function(e) {
+            const lang = e.target.value;
+            if (lang === 'en') {
+                document.documentElement.lang = 'en';
+                document.documentElement.dir = 'ltr';
+            } else {
+                document.documentElement.lang = 'ar';
+                document.documentElement.dir = 'rtl';
+            }
+        });
+
+        // Initialize
+        updateLastUpdateTime();
+        loadSystemStats();
+        
+        // Update every 5 seconds
+        setInterval(updateLastUpdateTime, 5000);
+        setInterval(loadSystemStats, 10000);
+	</script>
+</body>
+</html> 

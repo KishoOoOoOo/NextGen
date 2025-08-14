@@ -1,0 +1,26 @@
+projects:
+- id: الحضور والانصراف
+  name: نظام ضبط الوقت
+  working_dir: D:\attpp
+  command: python
+  args:
+  - app.py
+  python_path: null
+  env: {}
+  log_path: D:\attpp/server_output.log
+  ports: []
+  healthcheck:
+    type: process
+    url: null
+    tcp_host: null
+    tcp_port: null
+    interval_seconds: 10
+    timeout_seconds: 3
+  restart_policy:
+    autorestart: true
+    restart_delay_seconds: 5
+    max_restarts_per_hour: 10
+  start_on_boot: false
+  instances: 1
+  actions: {}
+  description: ''

@@ -1,0 +1,111 @@
+# NextGen Hub - Example Projects Configuration
+# This file contains example project configurations
+
+projects:
+  # Example Python Flask Application
+  - id: "flask-app"
+    name: "Flask Web Application"
+    working_dir: "C:/projects/flask-app"
+    command: "python"
+    args: ["app.py"]
+    instances: 1
+    ports: [5000]
+    log_path: "logs/flask-app.log"
+    description: "Example Flask web application"
+    env:
+      FLASK_ENV: "production"
+      PORT: "5000"
+    healthcheck:
+      type: "http"
+      url: "http://localhost:5000/health"
+      interval_seconds: 30
+      timeout_seconds: 5
+    restart_policy:
+      autorestart: true
+      restart_delay_seconds: 5
+      max_restarts_per_hour: 10
+    start_on_boot: false
+    actions:
+      migrate: ["manage.py", "migrate"]
+      collectstatic: ["manage.py", "collectstatic"]
+
+  # Example Node.js Application
+  - id: "node-app"
+    name: "Node.js API Server"
+    working_dir: "C:/projects/node-api"
+    command: "node"
+    args: ["server.js"]
+    instances: 2
+    ports: [3000, 3001]
+    log_path: "logs/node-app.log"
+    description: "Example Node.js API server"
+    env:
+      NODE_ENV: "production"
+      PORT: "3000"
+    healthcheck:
+      type: "http"
+      url: "http://localhost:3000/api/health"
+      interval_seconds: 30
+      timeout_seconds: 5
+    restart_policy:
+      autorestart: true
+      restart_delay_seconds: 5
+      max_restarts_per_hour: 10
+    start_on_boot: false
+    actions:
+      install: ["npm", "install"]
+      build: ["npm", "run", "build"]
+
+  # Example Background Service
+  - id: "background-service"
+    name: "Background Processing Service"
+    working_dir: "C:/projects/background-service"
+    command: "python"
+    args: ["worker.py"]
+    instances: 3
+    log_path: "logs/worker.log"
+    description: "Background job processing service"
+    env:
+      REDIS_URL: "redis://localhost:6379"
+      QUEUE_NAME: "default"
+    healthcheck:
+      type: "process"
+      interval_seconds: 60
+      timeout_seconds: 10
+    restart_policy:
+      autorestart: true
+      restart_delay_seconds: 10
+      max_restarts_per_hour: 5
+    start_on_boot: true
+    actions:
+      test: ["python", "-m", "pytest"]
+      lint: ["python", "-m", "flake8"]
+
+  # Example Database Service
+  - id: "database-service"
+    name: "Database Management Service"
+    working_dir: "C:/projects/db-service"
+    command: "python"
+    args: ["db_manager.py"]
+    instances: 1
+    ports: [5432]
+    log_path: "logs/db-service.log"
+    description: "Database management and backup service"
+    env:
+      DB_HOST: "localhost"
+      DB_PORT: "5432"
+      DB_NAME: "myapp"
+    healthcheck:
+      type: "tcp"
+      tcp_host: "localhost"
+      tcp_port: 5432
+      interval_seconds: 60
+      timeout_seconds: 10
+    restart_policy:
+      autorestart: true
+      restart_delay_seconds: 15
+      max_restarts_per_hour: 3
+    start_on_boot: true
+    actions:
+      backup: ["python", "backup.py"]
+      restore: ["python", "restore.py"] 

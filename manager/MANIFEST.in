@@ -1,0 +1,10 @@
+include README.md
+include LICENSE
+include CHANGELOG.md
+include start_orchestratorx.bat
+include data/projects.example.yaml
+include backend/requirements.txt
+recursive-include manager/backend/static *
+recursive-include manager/data *.yaml
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co] 
